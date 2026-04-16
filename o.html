@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mening Katta va Chiroyli Profili</title>
+    <style>
+        /* ASOSIY STILLAR */
+        body {
+            font-family: 'Poppins', sans-serif; /* Zamonaviy va chiroyli shrift */
+            /* SIZ BERGAN ASOSIY ORQA FON RASMI */
+            background-image: url('image_0.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ekran balandligiga moslashish */
+            color: #4b0082; /* To'q binafsha matn */
+        }
+
+        /* ASOSIY KONTEYNER (SHABLON) - KATTALASHTIRILGAN */
+        .main-container {
+            background-color: rgba(255, 255, 255, 0.85); /* Shaffof oq fon */
+            border-radius: 40px;
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4); /* Pushti soya */
+            overflow: hidden;
+            max-width: 1100px; /* Kattaroq kenglik */
+            width: 95%; /* Mobil qurilmalar uchun moslashuvchanlik */
+            display: flex;
+            border: 6px solid;
+            border-image: linear-gradient(45deg, #ff1493, #ffb6c1, #ff1493) 1; /* Gradient ramka */
+            position: relative;
+        }
+
+        /* CHAP TOMON: RASM VA NIKLAR */
+        .left-panel {
+            flex: 1; /* Panel proporsiyalari tenglashtirildi */
+            background: linear-gradient(135deg, rgba(255, 218, 233, 0.95), rgba(255, 182, 193, 0.95)); /* Pushti gradient panel */
+            padding: 60px; /* Kengroq padding */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-right: 3px solid rgba(255, 182, 193, 0.5);
+            position: relative;
+        }
+
+        /* YONIB-O'CHADIGAN YALTIROQ RASM RAMKASI */
+        .profile-pic-frame {
+            position: relative;
+            width: 280px; /* Kattaroq rasm */
+            height: 280px; /* Kattaroq rasm */
+            border-radius: 50%;
+            padding: 12px; /* Ramka va rasm orasidagi bo'shliq */
+            background: linear-gradient(45deg, #ff1493, #fff, #ff1493); /* Ramka rangi */
+            box-shadow: 0 0 25px rgba(255, 20, 147, 0.8), /* Ichki pushti porlash */
+                        0 0 40px rgba(255, 20, 147, 0.6), /* Tashqi pushti porlash */
+                        0 0 50px rgba(255, 20, 147, 0.4);
+            animation: pulse-glow 2s ease-in-out infinite; /* Sekin yonib-o'chish animatsiyasi */
+            margin-bottom: 45px; /* Kattaroq bo'shliq */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* RASM */
+        .profile-pic-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 6px solid #fff; /* Rasmni ajratib turuvchi oq hoshiya */
+        }
+
+        /* ISM VA FAMILYA - KATTALASHTIRILGAN */
+        .profile-name {
+            font-size: 2.8em; /* Kattaroq shrift */
+            font-weight: bold;
+            color: #ff1493;
+            text-align: center;
+            margin-bottom: 35px;
+            text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.3);
+        }
+
+        /* NIKLAR VA PROFILLAR - KATTALASHTIRILGAN TUGMALAR */
+        .social-links {
+            width: 100%;
+            max-width: 400px; /* Tugmalar kengligi cheklandi */
+            text-align: center;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #4b0082;
+            font-size: 1.3em; /* Kattaroq shrift */
+            margin-bottom: 22px; /* Kattaroq bo'shliq */
+            padding: 16px; /* Kengroq padding */
+            background: linear-gradient(135deg, #fff0f5, #ffdae9); /* Yaltiroq gradient */
+            border: 3px solid #ffb6c1;
+            border-radius: 35px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+        }
+
+        /* YALTIROQ CHIZIQ EFFEKTI (HOVERDA) */
+        .social-links a::before { 
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            transition: 0.5s;
+        }
+
+        .social-links a:hover::before {
+            left: 100%;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            border-color: #ff1493;
+            box-shadow: 0 10px 20px rgba(255, 20, 147, 0.4);
+            transform: translateY(-4px) scale(1.04);
+        }
+
+        /* Ikonkalar */
+        .social-links a img {
+            width: 28px;
+            height: 28px;
+            margin-right: 15px;
+        }
+
+        /* O'NG TOMON: MA'LUMOTLAR */
+        .right-panel {
+            flex: 1.3;
+            padding: 80px; /* Kengroq padding */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Sarlavhalar stili */
+        h2, h3 {
+            color: #ff1493;
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #ffb6c1;
+            padding-bottom: 12px;
+            font-size: 2em; /* Kattaroq shrift */
+        }
+
+        /* TUG'ILGAN KUN BLOYI - KATTALASHTIRILGAN */
+        .birthday-card {
+            background: linear-gradient(135deg, #fff, #fff0f5);
+            padding: 30px; /* Kengroq padding */
+            border-radius: 30px;
+            margin-bottom: 50px; /* Kattaroq bo'shliq */
+            border: 3px solid #ffb6c1;
+            text-align: center;
+            box-shadow: 0 7px 20px rgba(255, 105, 180, 0.15);
+        }
+
+        .birthday-card p {
+            font-size: 1.4em; /* Kattaroq shrift */
+            margin: 12px 0;
+        }
+
+        .birthday-card p strong {
+            color: #ff1493;
+        }
+
+        /* MEN HAQIMDA SECTION - KATTALASHTIRILGAN MATN */
+        .about-section {
+            line-height: 2; /* Kattaroq satrlararo masofa */
+            font-size: 1.2em; /* Kattaroq shrift */
+        }
+
+        .about-section p {
+            margin-bottom: 20px; /* Kattaroq bo'shliq */
+        }
+
+        /* ANIMATSIYALAR */
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 0 20px rgba(255, 20, 147, 0.7),
+                            0 0 30px rgba(255, 20, 147, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 35px rgba(255, 20, 147, 0.9),
+                            0 0 50px rgba(255, 20, 147, 0.7),
+                            0 0 70px rgba(255, 20, 147, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(255, 20, 147, 0.7),
+                            0 0 30px rgba(255, 20, 147, 0.5);
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<link rel="stylesheet" href="./o.css">
+<div class="main-container">
+    <div class="left-panel">
+        <div class="profile-pic-frame">
+            <img src="./photo_2025-10-30_23-24-39.jpg" alt="Mening Rasrim">
+        </div>
+        
+        <div class="profile-name">Jumaboyeva Oyshajon</div>
+        
+        <div class="social-links">
+           <a href="https://www.instagram.com/jumaboyeva_28.08/" target="_blank">
+           <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+           Istagram nikim
+            </a>
+            <a href="https://t.me/jumaboyevaoyshajon_12" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+                Telegram nikim
+            </a>
+            <a href="https://GitHub.com/Oyshajon2012" target="_blank">
+                <img src="https:/cdn-icons-png.flaticon.com//512/733/733553.png" alt="GitHub">
+                GitHub Profilim
+            </a>
+        </div>
+    </div>
+    
+    <div class="right-panel">
+        <div class="birthday-card">
+            <h2>🎉 Tug'ilgan Kunim</h2>
+            <p><strong>Kun:</strong> [28]</p>
+            <p><strong>Oy:</strong> [Avgust]</p>
+            <p><strong>Yil:</strong> [2012]</p>
+        </div>
+        
+        <div class="about-section">
+            <h3>🌸 Men Haqimda</h3>
+            <p>
+                Salom! Men haqimdagi saytga xush kelibsiz. Siz bu saytda men haqimdagi ma'lumotlarni bilib olishingiz mumkin.
+            </p>
+            <p>
+                Menga har xil sayt yasash juda yoqadi. Shuning uchun ko'proq sayt yasashga qiziqaman.
+            </p>
+            <p>
+                Meni kuzatib boring! Birgalikda har xil saytlar yasaymiz.
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
